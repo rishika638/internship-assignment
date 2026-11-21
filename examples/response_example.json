@@ -5,7 +5,7 @@
     "model": "mock-engine-v1",
     "is_mock": true,
     "cached": true,
-    "execution_time_ms": 554.31,
+    "execution_time_ms": 469.22,
     "input_tokens": 100,
     "output_tokens": 950,
     "estimated_cost_usd": 0.0,

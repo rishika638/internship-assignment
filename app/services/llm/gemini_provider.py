@@ -22,12 +22,22 @@ from app.services.crawler import CleanedWebsiteContent
 from app.utils.pricing import calculate_llm_cost
 from app.utils.logger import logger
 
+
 class GeminiProvider(BaseLLMProvider):
-    def __init__(self, api_key: str, model_name: str = "gemini-2.5-flash", max_retries: int = 3, base_delay: float = 1.0):
+    def __init__(
+        self,
+        api_key: str,
+        model_name: str = "gemini-2.5-flash",
+        max_retries: int = 1,
+        base_delay: float = 1.0,
+        request_timeout_seconds: int = 90,
+    ):
         self.api_key = api_key
         self._model_name = model_name
         self.max_retries = max_retries
         self.base_delay = base_delay
+        self.request_timeout_seconds = request_timeout_seconds
+
         genai.configure(api_key=self.api_key)
         self.client_model = genai.GenerativeModel(
             model_name=self._model_name,
@@ -59,28 +69,72 @@ class GeminiProvider(BaseLLMProvider):
             open_graph=content.open_graph
         )
 
+
         response = None
+
         for attempt in range(self.max_retries + 1):
+            attempt_start = time.perf_counter()
+
             try:
-                # Generate content asynchronously
-                response = await self.client_model.generate_content_async(user_prompt)
-                break
-            except (ServiceUnavailable, ResourceExhausted, InternalServerError, TooManyRequests) as transient_err:
-                if attempt == self.max_retries:
-                    logger.error(f"Gemini API transient failure ({type(transient_err).__name__}) after {self.max_retries} retries: {transient_err}")
-                    raise RuntimeError(f"Gemini API error after retries: {str(transient_err)}")
-                jitter = random.uniform(0.1, 0.5)
-                delay = (self.base_delay * (2 ** attempt)) + jitter
-                logger.warning(
-                    f"Gemini API {type(transient_err).__name__} encountered. Retrying in {delay:.2f}s (attempt {attempt + 1}/{self.max_retries})..."
+                logger.info(
+                    f"Gemini request attempt {attempt + 1}/"
+                    f"{self.max_retries + 1} started"
                 )
-                await asyncio.sleep(delay)
+
+                response = await asyncio.wait_for(
+                    self.client_model.generate_content_async(user_prompt),
+                    timeout=self.request_timeout_seconds,
+                )
+
+                attempt_ms = (time.perf_counter() - attempt_start) * 1000
+                logger.info(
+                    f"Gemini request succeeded on attempt {attempt + 1} "
+                    f"in {attempt_ms:.2f} ms"
+                )
+                break
+
+            except asyncio.TimeoutError:
+                attempt_ms = (time.perf_counter() - attempt_start) * 1000
+                logger.error(
+                    f"Gemini request timed out on attempt {attempt + 1} "
+                    f"after {attempt_ms:.2f} ms"
+                )
+
+                if attempt == self.max_retries:
+                    raise RuntimeError(
+                        f"Gemini request timed out after "
+                        f"{self.request_timeout_seconds} seconds"
+                    )
+
+            except (
+                ServiceUnavailable,
+                ResourceExhausted,
+                InternalServerError,
+                TooManyRequests,
+            ) as transient_err:
+                attempt_ms = (time.perf_counter() - attempt_start) * 1000
+                logger.warning(
+                    f"Gemini transient error on attempt {attempt + 1} "
+                    f"after {attempt_ms:.2f} ms: {transient_err}"
+                )
+
+                if attempt == self.max_retries:
+                    raise RuntimeError(
+                        f"Gemini API failed after retries: {transient_err}"
+                    )
+
             except GoogleAPIError as api_err:
                 logger.error(f"Gemini non-retryable API error: {api_err}")
-                raise RuntimeError(f"Gemini API error: {str(api_err)}")
+                raise RuntimeError(f"Gemini API error: {api_err}")
+
             except Exception as e:
-                logger.error(f"Unexpected error in GeminiProvider: {e}")
-                raise RuntimeError(f"Gemini processing error: {str(e)}")
+                logger.error(f"Unexpected Gemini error: {e}")
+                raise RuntimeError(f"Gemini processing error: {e}")
+
+            delay = self.base_delay * (2 ** attempt) + random.uniform(0.1, 0.5)
+            logger.info(f"Waiting {delay:.2f}s before Gemini retry")
+            await asyncio.sleep(delay)
+
 
         latency_ms = (time.perf_counter() - start_time) * 1000.0
 

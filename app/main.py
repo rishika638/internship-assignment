@@ -118,9 +118,15 @@ async def analyze_link(request: LinkAnalysisRequest):
             detail={"error": "SSRF_SECURITY_VIOLATION", "message": error_msg, "url": url}
         )
 
-    # 2. Extract and clean website content
+
     logger.info(f"Initiating crawling & extraction for: {url}")
+
+    crawl_start = time.perf_counter()
     crawl_data = await crawler.crawl(url)
+    crawl_ms = (time.perf_counter() - crawl_start) * 1000
+
+    logger.info(f"CRAWL completed in {crawl_ms:.2f} ms")
+
 
     # 3. Check Cache
     cached_payload = cache_manager.get(crawl_data.content_hash)
@@ -132,15 +138,36 @@ async def analyze_link(request: LinkAnalysisRequest):
         return LinkAnalysisResponse(**cached_payload)
 
     # 4. LLM Analysis
+
     logger.info(f"Running LLM analysis for content hash {crawl_data.content_hash[:10]}...")
+
+    llm_start = time.perf_counter()
+
     try:
         llm_result = await llm_factory.execute_analysis(crawl_data)
     except Exception as e:
-        logger.error(f"LLM analysis execution failed: {e}")
+        llm_ms = (time.perf_counter() - llm_start) * 1000
+        logger.error(
+            f"LLM failed after {llm_ms:.2f} ms: {e}"
+        )
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
-            detail={"error": "LLM_ANALYSIS_FAILED", "message": f"AI analysis failed: {str(e)}", "url": url}
+            detail={
+                "error": "LLM_ANALYSIS_FAILED",
+                "message": f"AI analysis failed: {str(e)}",
+                "url": url
+            }
         )
+
+    llm_ms = (time.perf_counter() - llm_start) * 1000
+
+    logger.info(
+        f"LLM completed in {llm_ms:.2f} ms | "
+        f"Provider: {llm_result.provider} | "
+        f"Model: {llm_result.model} | "
+        f"Mock: {llm_result.is_mock}"
+    )
+
 
     # 5. Validate output strictly against Pydantic section models
     try:
@@ -162,6 +189,11 @@ async def analyze_link(request: LinkAnalysisRequest):
 
     total_latency_ms = round((time.perf_counter() - start_time) * 1000.0, 2)
     iso_timestamp = datetime.now(timezone.utc).isoformat()
+
+    logger.info(
+    f"REQUEST completed in {total_latency_ms:.2f} ms "
+    f"(crawl={crawl_ms:.2f} ms, llm={llm_ms:.2f} ms)"
+)
 
     telemetry = Telemetry(
         provider=llm_result.provider,
