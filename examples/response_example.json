@@ -1,0 +1,296 @@
+{
+  "url": "https://example.com",
+  "telemetry": {
+    "provider": "mock",
+    "model": "mock-engine-v1",
+    "is_mock": true,
+    "cached": true,
+    "execution_time_ms": 554.31,
+    "input_tokens": 100,
+    "output_tokens": 950,
+    "estimated_cost_usd": 0.0,
+    "content_hash": "7a641c5b802675fabafae43e6442eccb4e57147bd9893b8b23e8d2b3467bd304",
+    "timestamp": "2026-11-21T19:25:16.438052+00:00"
+  },
+  "crawl_summary": {
+    "title": "Example Domain",
+    "meta_description": "",
+    "pages_crawled": 1,
+    "total_characters_extracted": 296,
+    "internal_links_discovered": [],
+    "has_schema_org": false,
+    "has_open_graph": false
+  },
+  "competitor_analysis": {
+    "brand_name": "Example Domain",
+    "brand_overview": "[MOCK ANALYSIS] Example Domain operates on example.com. Extracted title: 'Example Domain'. Specializes in modern digital services.",
+    "category": "Technology, Software & Digital Services",
+    "products_and_services": [
+      "Example Domain Core Platform Services",
+      "Example Domain Integration & Automation",
+      "Example Domain Enterprise Operations"
+    ],
+    "competitors": [
+      {
+        "name": "Competitor Alpha",
+        "overview": "Leading market incumbent providing scaled software solutions.",
+        "strengths": [
+          "Extensive enterprise distribution",
+          "Broad feature portfolio"
+        ],
+        "weaknesses": [
+          "Legacy codebase",
+          "Higher implementation pricing"
+        ],
+        "market_gaps": [
+          "Rapid lightweight deployments",
+          "Bespoke developer experience"
+        ],
+        "source_url": "https://example.com/competitor-alpha",
+        "is_verified": false
+      },
+      {
+        "name": "Competitor Beta",
+        "overview": "Cloud-native challenger with high automation focus.",
+        "strengths": [
+          "Modern user interface",
+          "Competitive self-serve tier"
+        ],
+        "weaknesses": [
+          "Limited international compliance support"
+        ],
+        "market_gaps": [
+          "Tailored white-glove onboarding for mid-market"
+        ],
+        "source_url": "https://example.com/competitor-beta",
+        "is_verified": false
+      },
+      {
+        "name": "Competitor Gamma",
+        "overview": "Boutique specialized consulting and engineering vendor.",
+        "strengths": [
+          "High technical depth",
+          "Agile delivery cycles"
+        ],
+        "weaknesses": [
+          "Smaller team capacity for global 24/7 SLAs"
+        ],
+        "market_gaps": [
+          "Integrated SaaS tooling combined with advisory"
+        ],
+        "source_url": "https://example.com/competitor-gamma",
+        "is_verified": false
+      }
+    ],
+    "brand_competitive_advantages": [
+      "Direct focused architecture tailored to Example Domain's target niche",
+      "Agile and transparent service delivery",
+      "High responsiveness and personalized customer support"
+    ],
+    "market_positioning_opportunities": [
+      "Position as the agile, high-performance alternative to legacy players",
+      "Target underserved mid-market organizations seeking modern AI and API workflows"
+    ],
+    "verified_information": [
+      "Verified Title: Example Domain",
+      "Verified Domain: example.com",
+      "Verified Headings Count: 0"
+    ],
+    "ai_generated_suggestions": [
+      "[MOCK ENGINE NOTE] This is synthetic strategic data generated for local testing without active API credits.",
+      "Develop specialized comparison landing pages against key competitors"
+    ]
+  },
+  "target_search_queries": {
+    "queries": [
+      {
+        "query": "best example alternatives for modern engineering",
+        "relevant_platforms": [
+          "Google",
+          "LinkedIn",
+          "X"
+        ],
+        "search_intent": "Commercial",
+        "business_relevance": "Attracts high-intent prospects comparing solutions against Example Domain.",
+        "target_audience": "Technical Decision Makers, Engineering Directors"
+      },
+      {
+        "query": "how to implement Example Domain Core Platform Services efficiently",
+        "relevant_platforms": [
+          "Google",
+          "LinkedIn"
+        ],
+        "search_intent": "Informational",
+        "business_relevance": "Builds thought leadership and captures early research funnel traffic.",
+        "target_audience": "Software Architects, Product Leads"
+      },
+      {
+        "query": "Example Domain customer case studies and pricing",
+        "relevant_platforms": [
+          "Google",
+          "Facebook"
+        ],
+        "search_intent": "Navigational",
+        "business_relevance": "Protects branded queries and accelerates inbound conversion.",
+        "target_audience": "Procurement Officers, CTOs"
+      },
+      {
+        "query": "top enterprise tools for business automation",
+        "relevant_platforms": [
+          "LinkedIn",
+          "X",
+          "Google"
+        ],
+        "search_intent": "Commercial",
+        "business_relevance": "Drives discoverability in category-defining technology evaluations.",
+        "target_audience": "Enterprise Operations Managers, CIOs"
+      },
+      {
+        "query": "fast API integration with Example Domain platform",
+        "relevant_platforms": [
+          "Google",
+          "Instagram"
+        ],
+        "search_intent": "Transactional",
+        "business_relevance": "Direct conversion path for developers seeking ready-to-use APIs.",
+        "target_audience": "Backend Engineers, Tech Founders"
+      }
+    ]
+  },
+  "seo_improvements": {
+    "keywords": {
+      "primary_keywords": [
+        "example domain",
+        "example platform",
+        "cloud software engineering"
+      ],
+      "secondary_keywords": [
+        "automated link analysis",
+        "API integration",
+        "enterprise software solutions"
+      ],
+      "long_tail_keywords": [
+        "how to choose the best example solution for enterprise",
+        "scalable python api architecture"
+      ],
+      "business_keywords": [
+        "Example Domain",
+        "Example Domain official website",
+        "example.com"
+      ]
+    },
+    "recommended_title": "Example Domain | Modern AI & Digital Architecture Solutions",
+    "recommended_meta_description": "Empower your business with Example Domain. Explore advanced solutions, reliable integration, and industry-leading performance on example.com.",
+    "supporting_content_suggestions": {
+      "service_landing_pages": [
+        "/services/example-domain-core-platf",
+        "/services/example-domain-integratio",
+        "/services/example-domain-enterprise"
+      ],
+      "industry_pages": [
+        "/industries/saas",
+        "/industries/financial-services",
+        "/industries/healthcare-tech"
+      ],
+      "faqs": [
+        "How does Example Domain ensure security and uptime?",
+        "What is the expected timeline for API integration?",
+        "What support and SLA packages are available?"
+      ],
+      "blogs": [
+        "Top Trends in Modern Cloud Architecture for 2026",
+        "Why High-Performance APIs are Critical for Digital Scale",
+        "A Guide to SSRF Security and Web Scraping Best Practices"
+      ],
+      "location_pages": [
+        "/regions/north-america",
+        "/regions/europe"
+      ]
+    },
+    "technical_and_onpage_notes": [
+      "Implement JSON-LD Schema.org 'Organization' and 'WebSite' markup.",
+      "Ensure all image assets have descriptive alt attributes.",
+      "Enhance Core Web Vitals, specifically Cumulative Layout Shift (CLS)."
+    ]
+  },
+  "top_services": {
+    "services": [
+      {
+        "service_name": "Example Domain Core Platform Services",
+        "description": "Professional offering addressing Example Domain Core Platform Services for modern digital operations.",
+        "target_industry": "Information Technology & Enterprise Services",
+        "target_customer": "Technical Leads & Business Executives",
+        "main_benefit": "Accelerates time-to-market while reducing operational overhead.",
+        "is_explicitly_stated": true,
+        "evidence_or_source": "Observed in website headings on example.com"
+      },
+      {
+        "service_name": "Example Domain Integration & Automation",
+        "description": "Professional offering addressing Example Domain Integration & Automation for modern digital operations.",
+        "target_industry": "Information Technology & Enterprise Services",
+        "target_customer": "Technical Leads & Business Executives",
+        "main_benefit": "Accelerates time-to-market while reducing operational overhead.",
+        "is_explicitly_stated": false,
+        "evidence_or_source": "Observed in website headings on example.com"
+      },
+      {
+        "service_name": "Example Domain Enterprise Operations",
+        "description": "Professional offering addressing Example Domain Enterprise Operations for modern digital operations.",
+        "target_industry": "Information Technology & Enterprise Services",
+        "target_customer": "Technical Leads & Business Executives",
+        "main_benefit": "Accelerates time-to-market while reducing operational overhead.",
+        "is_explicitly_stated": false,
+        "evidence_or_source": "Observed in website headings on example.com"
+      }
+    ]
+  },
+  "target_audience": {
+    "primary_audience": "Technology leaders, Product Managers, and Backend Architects seeking scalable solutions.",
+    "secondary_audience": "Growing SMBs and scale-ups requiring dependable digital transformation partner.",
+    "industry_segments": [
+      "SaaS & Cloud Platforms",
+      "FinTech",
+      "Professional Services",
+      "E-Commerce"
+    ],
+    "business_types": [
+      "B2B Mid-Market",
+      "Enterprise",
+      "High-growth Startups"
+    ],
+    "customer_profiles": [
+      "CTO",
+      "VP of Engineering",
+      "Head of Digital Strategy",
+      "Principal Architect"
+    ],
+    "geographic_focus": "Global with high adoption in North America and Western Europe.",
+    "customer_needs": [
+      "High reliability and low-latency digital operations",
+      "Seamless API connectivity and strict data compliance"
+    ],
+    "customer_challenges": [
+      "Vendor lock-in and excessive pricing from legacy providers",
+      "Shortage of internal senior engineering bandwidth"
+    ],
+    "customer_interests": [
+      "FastAPI",
+      "Cloud Scalability",
+      "SSRF Defense",
+      "LLM Integration"
+    ],
+    "recommended_marketing_segments": [
+      "Enterprise Technology Buyers",
+      "Cloud Engineering Leaders",
+      "Founder-led Tech Scale-ups"
+    ],
+    "extracted_facts": [
+      "Website Title: Example Domain",
+      "Total Characters Extracted: 296"
+    ],
+    "ai_inferences": [
+      "[MOCK INFERENCE] Target persona focuses on engineering excellence and cost predictability.",
+      "[MOCK INFERENCE] Organization benefits from clear technical documentation and live demo endpoints."
+    ]
+  }
+}

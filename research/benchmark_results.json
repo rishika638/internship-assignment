@@ -1,0 +1,36 @@
+{
+  "mock": {
+    "status": "TESTED",
+    "provider": "mock",
+    "model": "mock-engine-v1",
+    "runs": 3,
+    "success_rate_percent": 100.0,
+    "avg_latency_ms": 0.09,
+    "min_latency_ms": 0.05,
+    "max_latency_ms": 0.15,
+    "avg_input_tokens": 222,
+    "avg_output_tokens": 950,
+    "avg_cost_usd_per_analysis": 0.0,
+    "cost_for_100_analyses_usd": 0.0,
+    "cost_for_1000_analyses_usd": 0.0,
+    "errors": []
+  },
+  "gemini": {
+    "status": "NOT TESTED",
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "reason": "GEMINI_API_KEY environment variable not configured."
+  },
+  "openai": {
+    "status": "NOT TESTED",
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "reason": "OPENAI_API_KEY environment variable not configured."
+  },
+  "claude": {
+    "status": "NOT TESTED",
+    "provider": "claude",
+    "model": "claude-3-5-haiku-20241022",
+    "reason": "ANTHROPIC_API_KEY environment variable not configured."
+  }
+}

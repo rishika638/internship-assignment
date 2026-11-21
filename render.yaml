@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: dxora-link-analysis-api
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: ENVIRONMENT
+        value: production
+      - key: PRIMARY_LLM_PROVIDER
+        value: gemini
+      - key: FALLBACK_LLM_PROVIDER
+        value: mock
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CACHE_ENABLED
+        value: "true"
+      - key: CACHE_TTL_SECONDS
+        value: "86400"
+      - key: CACHE_DB_PATH
+        value: "data/cache.db"
+    disk:
+      name: cache-data
+      mountPath: /app/data
+      sizeGB: 1
